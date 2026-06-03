@@ -14,6 +14,10 @@ Community-based annotation system for LGBTQ+ slur reclamation research.
 - Reclamation-Aware Augmentation: Synthetic contrastive pair generation. For every accepted reclaimed example the pipeline generates a matching non-reclaimed counterpart using the same slur.
 
 ---
+## Motivation
+
+A fundamental challenge in the automated detection of marginalized language is the scarcity of implicit, naturalistic data. Building upon the foundational work of Ferrando et al. (2026) in the MultiPRIDE shared task, this thesis addresses a recognized structural challenge in slur reclamation datasets: distributional skew.
+
 ## Reclamation-Aware Augmentation (RAA) Architecture
 
 ```
@@ -22,7 +26,7 @@ StanceConfig (slur, speaker, pragmatic_role, community, language)
     ▼  Stage 1 — Base model generation (no RLHF)
     ▼  Stage 2 — Instruct validator (reclaimed only)
     ▼  Stage 3 — MPEC gate  (empowerment factors)
-    ▼  Stage 4 — Feedback-driven regeneration (max 5 attempts)
+    ▼  Stage 4 — Feedback-driven regeneration (max attempts)
     │
     └─ Counterpart: base model + surface-mirroring prompt + MPEC
 ```
