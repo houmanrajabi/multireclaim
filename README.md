@@ -9,13 +9,24 @@ Community-based annotation system for LGBTQ+ slur reclamation research.
 
 ## Overview
 
-MultiRECLAIM is a self-hosted, privacy-first annotation platform that collects community judgements on slur reclamation from the LGBTQ+ community and allies. It implements an asymmetric annotation schema based on the FATA framework, and zero-trust annotator privacy.
+- MultiRECLAIM is a self-hosted, privacy-first annotation platform that collects community judgements on slur reclamation from the LGBTQ+ community and allies. It implements an asymmetric annotation schema based on the FATA framework, and zero-trust annotator privacy.
 
-Reclamation-Aware Augmentation: Synthetic contrastive pair generation. For every accepted reclaimed example the pipeline generates a matching non-reclaimed counterpart using the same slur.
+- Reclamation-Aware Augmentation: Synthetic contrastive pair generation. For every accepted reclaimed example the pipeline generates a matching non-reclaimed counterpart using the same slur.
 
 ---
+## Reclamation-Aware Augmentation (RAA) Architecture
 
-## Architecture
+```
+StanceConfig (slur, speaker, pragmatic_role, community, language)
+    │
+    ▼  Stage 1 — Base model generation (no RLHF)
+    ▼  Stage 2 — Instruct validator (reclaimed only)
+    ▼  Stage 3 — MPEC gate  (empowerment factors)
+    ▼  Stage 4 — Feedback-driven regeneration (max 5 attempts)
+    │
+    └─ Counterpart: base model + surface-mirroring prompt + MPEC
+```
+## MultiRECLAIM Annotation Platform Architecture
 
 Five Docker Compose services:
 
